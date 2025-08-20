@@ -1,0 +1,21 @@
+digraph ArquitecturaMediaStream {
+	bgcolor=white
+	node [color=lightblue fontname=Arial shape=box style="rounded,filled"]
+	Users [label="Usuarios Globales
+(Web/App)" color=lightgreen shape=oval]
+	CF [label="Amazon CloudFront
+(CDN)" color=orange]
+	S3 [label="Amazon S3
+(Almacenamiento de Objetos)" color=lightblue]
+	Glacier [label="Amazon S3 Glacier
+(Archivado)" color=lightgrey]
+	IAM [label="AWS IAM
+(Control de Acceso)" color=yellow]
+	KMS [label="AWS KMS
+(Cifrado)" color=pink]
+	Users -> CF [label="Solicitudes de contenido"]
+	CF -> S3 [label="Distribución optimizada"]
+	S3 -> Glacier [label="Archivado automático"]
+	IAM -> S3 [label="Políticas de acceso"]
+	KMS -> S3 [label="Cifrado de objetos"]
+}
