@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SQS + DLQ + SNS Topic y suscripción a SQS para E-ComExpress
+
+Parameters:
+  Env:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, test, prod]
+    Description: Entorno
+
+Resources:
+  PedidosDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub PedidosDLQ-${Env}
+      MessageRetentionPeriod: 1209600  # 14 días
+
+  PedidosQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub PedidosQueue-${Env}
+      VisibilityTimeout: 30
+      ReceiveMessageWaitTimeSeconds: 10
+      MessageRetentionPeriod: 345600   # 4 días
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt PedidosDLQ.Arn
+        maxReceiveCount: 5
+      Tags:
+        - Key: Project
+          Value: E-ComExpress
+        - Key: Environment
+          Value: !Ref Env
+
+  NotificacionesTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub NotificacionesTopic-${Env}
+
+  NotificacionesQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub NotificacionesQueue-${Env}
+
+  TopicSubscriptionToNotificacionesQueue:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref NotificacionesTopic
+      Protocol: sqs
+      Endpoint: !GetAtt NotificacionesQueue.Arn
+      RawMessageDelivery: true
+
+  AllowSNSToSendToSQS:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues:
+        - !Ref NotificacionesQueue
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: Allow-SNS-SendMessage
+            Effect: Allow
+            Principal: "*"
+            Action: "sqs:SendMessage"
+            Resource: !GetAtt NotificacionesQueue.Arn
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref NotificacionesTopic
+
+Outputs:
+  PedidosQueueUrl:
+    Value: !Ref PedidosQueue
+  PedidosDLQUrl:
+    Value: !Ref PedidosDLQ
+  NotificacionesTopicArn:
+    Value: !Ref NotificacionesTopic
+  NotificacionesQueueUrl:
+    Value: !Ref NotificacionesQueue

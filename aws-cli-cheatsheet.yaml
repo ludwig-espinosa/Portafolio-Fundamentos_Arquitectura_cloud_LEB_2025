@@ -1,0 +1,13 @@
+# Comandos de referencia (AWS CLI)
+# Crear cola principal
+# aws sqs create-queue --queue-name PedidosQueue --attributes file://sqs-queue.json
+# Crear DLQ (si no la crea CloudFormation)
+# aws sqs create-queue --queue-name PedidosDLQ
+# Crear tópico SNS
+# aws sns create-topic --name NotificacionesTopic
+# Establecer política del tópico
+# aws sns set-topic-attributes --topic-arn arn:aws:sns:us-east-1:123456789012:NotificacionesTopic --attribute-name Policy --attribute-value file://sns-topic-policy.json
+# Suscribir SQS al tópico
+# aws sns subscribe --topic-arn arn:aws:sns:us-east-1:123456789012:NotificacionesTopic --protocol sqs --notification-endpoint arn:aws:sqs:us-east-1:123456789012:NotificacionesQueue
+# Publicar un mensaje de prueba
+# aws sns publish --topic-arn arn:aws:sns:us-east-1:123456789012:NotificacionesTopic --message '{"orderId":123,"status":"shipped"}'
