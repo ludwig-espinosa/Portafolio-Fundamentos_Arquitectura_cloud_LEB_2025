@@ -23,7 +23,7 @@ dot.edge("IAM", "S3", label="Políticas de acceso")
 dot.edge("KMS", "S3", label="Cifrado de objetos")
 
 # Renderizar el archivo
-output_path = "/mnt/data/arquitectura_mediastream"
+output_path = "/Users/escandalosos/Downloads/arquitectura_mediastream"
 dot.render(output_path, cleanup=True)
 
 output_path + ".png"
