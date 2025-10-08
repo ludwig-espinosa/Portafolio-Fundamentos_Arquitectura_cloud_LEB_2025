@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="CloudSecure Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="internet_label" value="Client / Browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="cf" value="CloudFront CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f7ff;strokeColor=#1f78b4;" vertex="1" parent="1">
+          <mxGeometry x="220" y="40" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="waf" value="WAF Web ACL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff0b3;strokeColor=#de9e00;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="alb" value="ALB / App Load Balancer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f5ff;strokeColor=#6a5acd;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="asg" value="ASG / App servers (Private Subnets)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8ffe8;strokeColor=#2e8b57;" vertex="1" parent="1">
+          <mxGeometry x="560" y="120" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="rds" value="RDS - DB (Private Subnet)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6e6;strokeColor=#d62728;" vertex="1" parent="1">
+          <mxGeometry x="800" y="120" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="S3 - Assets (Encrypted)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff0f5;strokeColor=#c71585;" vertex="1" parent="1">
+          <mxGeometry x="560" y="220" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="kms" value="KMS Customer Managed Keys" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5dc;strokeColor=#8b4513;" vertex="1" parent="1">
+          <mxGeometry x="800" y="220" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ct_bucket" value="S3 - CloudTrail Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="220" y="220" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="cloudtrail" value="CloudTrail / Lake" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ffe6;strokeColor=#228b22;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="guardduty" value="GuardDuty" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e6;strokeColor=#ff8c00;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="vpcflow" value="VPC Flow Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff0;strokeColor=#006400;" vertex="1" parent="1">
+          <mxGeometry x="220" y="320" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="macie" value="Macie - Sensitive Data Discovery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff0f5;strokeColor=#800080;" vertex="1" parent="1">
+          <mxGeometry x="420" y="320" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="cognito" value="Cognito User Pool" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f7ff;strokeColor=#1f78b4;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="awsconfig" value="AWS Config Rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#808080;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="securityhub" value="Security Hub" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbe6;strokeColor=#b8860b;" vertex="1" parent="1">
+          <mxGeometry x="260" y="420" width="180" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit" value="Audit Manager - Evidence" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f7ff;strokeColor=#1f78b4;" vertex="1" parent="1">
+          <mxGeometry x="520" y="420" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="lambdaauto" value="Lambda / SSM Automation (Remediation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#4682b4;" vertex="1" parent="1">
+          <mxGeometry x="760" y="420" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="cloudwatch" value="CloudWatch Logs &amp; Alarms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffe6;strokeColor=#ffd700;" vertex="1" parent="1">
+          <mxGeometry x="520" y="320" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="sns" value="SNS Alerts (Pager/Email)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#708090;" vertex="1" parent="1">
+          <mxGeometry x="760" y="320" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Edges omitted for brevity (same as earlier) -->
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
